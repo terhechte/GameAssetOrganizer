@@ -13,6 +13,12 @@
 		A8BA2A7D15E8E388008389D6 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = A8BA2A7B15E8E388008389D6 /* Credits.rtf */; };
 		A8BA2A8015E8E388008389D6 /* APAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A8BA2A7F15E8E388008389D6 /* APAppDelegate.m */; };
 		A8BA2A8315E8E388008389D6 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8BA2A8115E8E388008389D6 /* MainMenu.xib */; };
+		A8BA2A8B15E8F045008389D6 /* APPackListController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8BA2A8A15E8F045008389D6 /* APPackListController.m */; };
+		A8BA2A8E15E8F055008389D6 /* APPackImagesController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8BA2A8D15E8F055008389D6 /* APPackImagesController.m */; };
+		A8BA2A9115E8F067008389D6 /* APFolderImagesController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8BA2A9015E8F067008389D6 /* APFolderImagesController.m */; };
+		A8BA2A9315E8F184008389D6 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8BA2A9215E8F184008389D6 /* ImageIO.framework */; };
+		A8BA2A9515E8F1A6008389D6 /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8BA2A9415E8F1A6008389D6 /* Quartz.framework */; };
+		A8BA2A9815E90CDF008389D6 /* APContentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A8BA2A9715E90CDF008389D6 /* APContentModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +35,16 @@
 		A8BA2A7E15E8E388008389D6 /* APAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APAppDelegate.h; sourceTree = "<group>"; };
 		A8BA2A7F15E8E388008389D6 /* APAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = APAppDelegate.m; sourceTree = "<group>"; };
 		A8BA2A8215E8E388008389D6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		A8BA2A8915E8F045008389D6 /* APPackListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APPackListController.h; sourceTree = "<group>"; };
+		A8BA2A8A15E8F045008389D6 /* APPackListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APPackListController.m; sourceTree = "<group>"; };
+		A8BA2A8C15E8F055008389D6 /* APPackImagesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APPackImagesController.h; sourceTree = "<group>"; };
+		A8BA2A8D15E8F055008389D6 /* APPackImagesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APPackImagesController.m; sourceTree = "<group>"; };
+		A8BA2A8F15E8F067008389D6 /* APFolderImagesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APFolderImagesController.h; sourceTree = "<group>"; };
+		A8BA2A9015E8F067008389D6 /* APFolderImagesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APFolderImagesController.m; sourceTree = "<group>"; };
+		A8BA2A9215E8F184008389D6 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		A8BA2A9415E8F1A6008389D6 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
+		A8BA2A9615E90CDF008389D6 /* APContentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APContentModel.h; sourceTree = "<group>"; };
+		A8BA2A9715E90CDF008389D6 /* APContentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APContentModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +52,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A8BA2A9515E8F1A6008389D6 /* Quartz.framework in Frameworks */,
+				A8BA2A9315E8F184008389D6 /* ImageIO.framework in Frameworks */,
 				A8BA2A6D15E8E388008389D6 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -46,6 +64,8 @@
 		A8BA2A5D15E8E388008389D6 = {
 			isa = PBXGroup;
 			children = (
+				A8BA2A9415E8F1A6008389D6 /* Quartz.framework */,
+				A8BA2A9215E8F184008389D6 /* ImageIO.framework */,
 				A8BA2A7215E8E388008389D6 /* GameAssetOrganizer */,
 				A8BA2A6B15E8E388008389D6 /* Frameworks */,
 				A8BA2A6915E8E388008389D6 /* Products */,
@@ -86,6 +106,14 @@
 				A8BA2A7F15E8E388008389D6 /* APAppDelegate.m */,
 				A8BA2A8115E8E388008389D6 /* MainMenu.xib */,
 				A8BA2A7315E8E388008389D6 /* Supporting Files */,
+				A8BA2A8915E8F045008389D6 /* APPackListController.h */,
+				A8BA2A8A15E8F045008389D6 /* APPackListController.m */,
+				A8BA2A8C15E8F055008389D6 /* APPackImagesController.h */,
+				A8BA2A8D15E8F055008389D6 /* APPackImagesController.m */,
+				A8BA2A8F15E8F067008389D6 /* APFolderImagesController.h */,
+				A8BA2A9015E8F067008389D6 /* APFolderImagesController.m */,
+				A8BA2A9615E90CDF008389D6 /* APContentModel.h */,
+				A8BA2A9715E90CDF008389D6 /* APContentModel.m */,
 			);
 			path = GameAssetOrganizer;
 			sourceTree = "<group>";
@@ -169,6 +197,10 @@
 			files = (
 				A8BA2A7915E8E388008389D6 /* main.m in Sources */,
 				A8BA2A8015E8E388008389D6 /* APAppDelegate.m in Sources */,
+				A8BA2A8B15E8F045008389D6 /* APPackListController.m in Sources */,
+				A8BA2A8E15E8F055008389D6 /* APPackImagesController.m in Sources */,
+				A8BA2A9115E8F067008389D6 /* APFolderImagesController.m in Sources */,
+				A8BA2A9815E90CDF008389D6 /* APContentModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,6 +286,7 @@
 		A8BA2A8715E8E388008389D6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GameAssetOrganizer/GameAssetOrganizer-Prefix.pch";
@@ -266,6 +299,7 @@
 		A8BA2A8815E8E388008389D6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GameAssetOrganizer/GameAssetOrganizer-Prefix.pch";
