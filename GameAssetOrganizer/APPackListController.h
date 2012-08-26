@@ -10,6 +10,7 @@
 
 @interface APPackListController : NSObject <NSOutlineViewDataSource, NSOutlineViewDelegate> {
     APContentModel *model;
+    NSMutableArray *objects;
 }
 
 @property (assign) NSInteger selectedIndex;

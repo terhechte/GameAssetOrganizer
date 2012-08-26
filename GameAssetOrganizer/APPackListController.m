@@ -8,6 +8,27 @@
 
 #import "APPackListController.h"
 
+@interface APPackListObject : NSObject
+@property (nonatomic, strong) NSString *title;
+@property (nonatomic, assign) NSInteger index;
+@property (nonatomic, assign) bool leaf;
++ (APPackListObject*) packListObjectWithTitle:(NSString*)title index:(NSInteger)index leaf:(bool)leaf;
+@end
+
+@implementation APPackListObject
+
+@synthesize title = _title, index = _index, leaf = _leaf;
+
++ (APPackListObject*) packListObjectWithTitle:(NSString*)title index:(NSInteger)index leaf:(bool)leaf {
+    APPackListObject *object = [[APPackListObject alloc] init];
+    object.index = index;
+    object.title = title;
+    object.leaf = leaf;
+    return object;
+}
+
+@end
+
 @implementation APPackListController
 @synthesize selectedIndex = _selectedIndex;
 @synthesize outlineView;
@@ -15,51 +36,56 @@
 
 - (void) awakeFromNib {
     model = [APContentModel sharedModel];
+    objects = [NSMutableArray arrayWithCapacity:10];
 }
 
 - (NSInteger)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item {
-    return 2;
-    NSLog(@"%s", _cmd);
-    NSInteger nr = 0;
-    if (!item)nr =  [model numberOfPacks];
-
-    if([[(NSDictionary*)item objectForKey:@"leaf"] boolValue])nr = 0;
-    
-    if (item) {
-        nr = [model numberOfAssetPacksInPack:[(APContentObject*)item pack]];
+    // we have an item, return the children
+    APPackListObject *itemObj = item;
+    if ([itemObj leaf]) {
+        return 0;
     }
     
-    NSLog(@"return nummer for %@ is %li", item, nr);
-    return nr;
+    // this is the root node
+    if (!item) {
+        // and remove hte old objects
+        [objects removeAllObjects];
+        return [model numberOfPacks];
+    }
+    
+    // this is a asset node
+    return [model numberOfAssetPacksInPack:itemObj.index];
 }
 
 - (id)outlineView:(NSOutlineView *)outlineView child:(NSInteger)index ofItem:(id)item {
-    NSLog(@"%s", _cmd);
     if (!item) {
-        return @{ @"title" : [model titleOfPack:index],
-                  @"index": [NSNumber numberWithLong:index],
-                  @"leaf": @NO};
+        // root node
+        APPackListObject *po = [APPackListObject packListObjectWithTitle:[model titleOfPack:index]
+                                                   index:index leaf:NO];
+        // we save the objects so they don't get released
+        [objects addObject:po];
+        return po;
     }
-    
-    return @{ @"title" : [model titleOfAssetPack:index inPack:[[(NSDictionary*)
-                                                                item objectForKey:@"index"] intValue]],
-              @"index": [NSNumber numberWithLong: index],
-              @"leaf": @YES};
+    // normal node
+    APPackListObject *packObject = item;
+    APPackListObject *po = [APPackListObject packListObjectWithTitle:[model titleOfAssetPack:index inPack:packObject.index]
+                                               index:index leaf:YES];
+    // we save the objects so they don't get released
+    [objects addObject:po];
+    return po;
 }
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView isItemExpandable:(id)item {
-    NSLog(@"%s", _cmd);
-    if ([[(NSDictionary*)item objectForKey:@"leaf"] boolValue])return NO;
+    // root;
+    if (!item)return YES;
+    APPackListObject *itemObj = item;
+    if (itemObj.leaf)return NO;
     return YES;
 }
 
 - (id)outlineView:(NSOutlineView *)outlineView objectValueForTableColumn:(NSTableColumn *)tableColumn byItem:(id)item {
-    NSLog(@"%s (item: %@)", _cmd, item);
-    if (!item) return @"Root";
-    return @"lala";
-    if (![item isKindOfClass:[NSDictionary class]]) return nil;
-    NSLog(@"data for: %@", item);
-    return [(NSDictionary*)item objectForKey:@"title"];
+    if (!item || ![item isKindOfClass:[APPackListObject class]]) return @"Root";
+    return [(APPackListObject*)item title];
 }
 
 @end
