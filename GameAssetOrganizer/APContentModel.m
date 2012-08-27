@@ -8,6 +8,16 @@
 
 #import "APContentModel.h"
 
+@interface NSDictionary(Sort)
+- (NSArray*) allSortedKeys;
+@end
+@implementation NSDictionary(Sort)
+- (NSArray*) allSortedKeys {
+    NSArray *keys = [self allKeys];
+    return [keys sortedArrayUsingSelector:@selector(compare:)];
+}
+@end
+
 @implementation APContentObject
 @synthesize pack, assetPack, filename, folder;
 + (APContentObject*) objectWithPack:(NSInteger)pack assetPack:(NSInteger)assetPack filename:(NSString*)filename folder:(NSURL*)folder {
@@ -66,10 +76,10 @@
         
         // this structure defines how many packs we have, how many sub packs they have
         _structure = @{
-            @"Pack1" : @[ @"AssetPack1", @"AssetPack2" ],
-            @"Pack2" : @[ @"AssetPack1", @"AssetPack2" ],
-            @"Pack3" : @[ @"AssetPack1", @"AssetPack2" ],
-            @"Pack4" : @[ @"AssetPack1", @"AssetPack2" ]
+            @"LevelPack 1" : @[ @"Asset Pack 1", @"Asset Pack 2" ],
+            @"LevelPack 2" : @[ @"Asset Pack 1", @"Asset Pack 2" ],
+            @"LevelPack 3" : @[ @"Asset Pack 1", @"Asset Pack 2" ],
+            @"LevelPack 4" : @[ @"Asset Pack 1", @"Asset Pack 2" ]
         };
         
         // and now we create the pack structure from this structure
@@ -92,6 +102,7 @@
     NSDictionary *exportedDataDictionary = @{ @"header" : _structure,
     @"data": self.gameAssetConfig};
     
+    
     return [NSKeyedArchiver archivedDataWithRootObject:exportedDataDictionary];
 }
 
@@ -101,15 +112,16 @@
     _structure = [importedDictionary objectForKey:@"header"];
     self.gameAssetConfig = [importedDictionary objectForKey:@"data"];
     
+    
     self.currentAssetPack = -1;
     self.currentPack = -1;
 }
 
 - (NSString*) titleOfPack:(NSInteger)pack {
-    return [[_structure allKeys] objectAtIndex:pack];
+    return [[_structure allSortedKeys] objectAtIndex:pack];
 }
 - (NSString*) titleOfAssetPack:(NSInteger)assetPack inPack:(NSInteger)pack {
-    return [[_structure objectForKey:[[_structure allKeys] objectAtIndex:pack]] objectAtIndex: assetPack];
+    return [[_structure objectForKey:[[_structure allSortedKeys] objectAtIndex:pack]] objectAtIndex: assetPack];
 }
 
 - (NSInteger) numberOfPacks {
@@ -117,12 +129,12 @@
 }
 
 - (NSInteger) numberOfAssetPacksInPack:(NSInteger)pack {
-    return [[_structure objectForKey:[[_structure allKeys] objectAtIndex:pack]] count];
+    return [[_structure objectForKey:[[_structure allSortedKeys] objectAtIndex:pack]] count];
 }
 
 - (NSArray*) assetsForPack:(NSInteger)pack assetPack:(NSInteger)assetPack {
-    NSDictionary *packDict = [self.gameAssetConfig objectForKey:[[self.gameAssetConfig allKeys] objectAtIndex:pack]];
-    return [[packDict objectForKey:[[packDict allKeys] objectAtIndex:assetPack]] copy]; // copy to make it immutable
+    NSDictionary *packDict = [self.gameAssetConfig objectForKey:[[self.gameAssetConfig allSortedKeys] objectAtIndex:pack]];
+    return [[packDict objectForKey:[[packDict allSortedKeys] objectAtIndex:assetPack]] copy]; // copy to make it immutable
 }
 
 - (void) setAssets:(NSArray*)assets forPack:(NSInteger)pack  assetPack:(NSInteger)assetPack {
@@ -143,20 +155,20 @@
     }
     
     NSMutableDictionary *packDict = [self.gameAssetConfig objectForKey:
-                                     [[self.gameAssetConfig allKeys] objectAtIndex:pack]];
+                                     [[self.gameAssetConfig allSortedKeys] objectAtIndex:pack]];
     [packDict setObject:assets
-                 forKey:[[packDict allKeys] objectAtIndex:assetPack]];
+                 forKey:[[packDict allSortedKeys] objectAtIndex:assetPack]];
     
     // and save it again
     [self.gameAssetConfig setObject:packDict
-                             forKey:[[self.gameAssetConfig allKeys] objectAtIndex:pack]];
+                             forKey:[[self.gameAssetConfig allSortedKeys] objectAtIndex:pack]];
 }
 
 - (void) addObject:(APContentObject*)object toPack:(NSInteger)pack assetPack:(NSInteger)assetPack {
     NSMutableDictionary *packDict = [self.gameAssetConfig objectForKey:
-                                     [[self.gameAssetConfig allKeys] objectAtIndex:pack]];
+                                     [[self.gameAssetConfig allSortedKeys] objectAtIndex:pack]];
     
-    NSMutableArray *packAssetArray = [packDict objectForKey:[[packDict allKeys] objectAtIndex:assetPack]];
+    NSMutableArray *packAssetArray = [packDict objectForKey:[[packDict allSortedKeys] objectAtIndex:assetPack]];
     
     // make sure to not add touble
     __block bool contains = NO;
@@ -176,14 +188,14 @@
     [packAssetArray addObject:object];
     
     [self.gameAssetConfig setObject:packDict
-                             forKey:[[self.gameAssetConfig allKeys] objectAtIndex:pack]];
+                             forKey:[[self.gameAssetConfig allSortedKeys] objectAtIndex:pack]];
 }
 
 - (void) removeObject:(APContentObject*)object fromPack:(NSInteger)pack assetPack:(NSInteger)assetPack {
     NSMutableDictionary *packDict = [self.gameAssetConfig objectForKey:
-                                     [[self.gameAssetConfig allKeys] objectAtIndex:pack]];
+                                     [[self.gameAssetConfig allSortedKeys] objectAtIndex:pack]];
     
-    __block NSMutableArray *packAssetArray = [packDict objectForKey:[[packDict allKeys] objectAtIndex:assetPack]];
+    __block NSMutableArray *packAssetArray = [packDict objectForKey:[[packDict allSortedKeys] objectAtIndex:assetPack]];
     
     // we can't just remove, since the object id may be different
     [[packAssetArray copy] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
@@ -196,7 +208,7 @@
     
     // and save it back
     [self.gameAssetConfig setObject:packDict
-                             forKey:[[self.gameAssetConfig allKeys] objectAtIndex:pack]];
+                             forKey:[[self.gameAssetConfig allSortedKeys] objectAtIndex:pack]];
 }
 
 @end
