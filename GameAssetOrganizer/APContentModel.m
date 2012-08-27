@@ -85,10 +85,10 @@
         
         // this structure defines how many packs we have, how many sub packs they have
         _structure = @{
-            @"LevelPack 1" : @[ @"Asset Pack 1", @"Asset Pack 2" ],
-            @"LevelPack 2" : @[ @"Asset Pack 1", @"Asset Pack 2" ],
-            @"LevelPack 3" : @[ @"Asset Pack 1", @"Asset Pack 2" ],
-            @"LevelPack 4" : @[ @"Asset Pack 1", @"Asset Pack 2" ]
+            @"LevelPack 1" : @[ @"Asset Pack 1", @"Asset Pack 2" , @"Seperate"],
+            @"LevelPack 2" : @[ @"Asset Pack 1", @"Asset Pack 2" , @"Seperate"],
+            @"LevelPack 3" : @[ @"Asset Pack 1", @"Asset Pack 2" , @"Seperate" ],
+            @"LevelPack 4" : @[ @"Asset Pack 1", @"Asset Pack 2" , @"Seperate" ]
         };
         
         // and now we create the pack structure from this structure
