@@ -71,6 +71,25 @@
     self.currentPackContent = [NSArray array];
 }
 
+- (IBAction)removeSelectedItems:(id)sender {
+    
+    if (!self.currentPackIndexes || [self.currentPackIndexes count]==0) {
+        NSBeep();
+        return;
+    }
+    
+    if (self.model.currentPack==-1 || self.model.currentAssetPack==-1) {
+        NSBeep();
+        return;
+    }
+    
+    for (APContentObject *object in [self.currentPackContent objectsAtIndexes:self.currentPackIndexes]) {
+        [model removeObject:object fromPack:model.currentPack assetPack:model.currentAssetPack];
+    }
+    
+    [self AP_reloadData];
+}
+
 #pragma mark CollectionViewDelegate
 - (BOOL)collectionView:(NSCollectionView *)collectionView
             acceptDrop:(id < NSDraggingInfo >)draggingInfo

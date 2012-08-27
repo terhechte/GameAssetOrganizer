@@ -17,5 +17,6 @@
 @property (strong) NSString *currentFilesMaxRect;
 
 - (IBAction)removeAllItems:(id)sender;
+- (IBAction)removeSelectedItems:(id)sender;
 
 @end
