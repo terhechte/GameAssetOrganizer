@@ -23,6 +23,10 @@
 		A8BA2ABC15EB73DB008389D6 /* APCollectionViewItemSelectableView.m in Sources */ = {isa = PBXBuildFile; fileRef = A8BA2ABB15EB73DB008389D6 /* APCollectionViewItemSelectableView.m */; };
 		A8BA2AE415EB7E1A008389D6 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8BA2AE315EB7E1A008389D6 /* main.cpp */; };
 		A8BA2AE615EB7E1A008389D6 /* findMaxRects.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = A8BA2AE515EB7E1A008389D6 /* findMaxRects.1 */; };
+		A8BA2AF515EB9457008389D6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8BA2AF415EB9457008389D6 /* Foundation.framework */; };
+		A8BA2AF815EB9457008389D6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A8BA2AF715EB9457008389D6 /* main.m */; };
+		A8BA2AFC15EB9457008389D6 /* processGameassets.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = A8BA2AFB15EB9457008389D6 /* processGameassets.1 */; };
+		A8BA2B0015EB9462008389D6 /* APContentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A8BA2A9715E90CDF008389D6 /* APContentModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -33,6 +37,16 @@
 			dstSubfolderSpec = 0;
 			files = (
 				A8BA2AE615EB7E1A008389D6 /* findMaxRects.1 in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		A8BA2AF015EB9457008389D6 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+				A8BA2AFC15EB9457008389D6 /* processGameassets.1 in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
@@ -69,6 +83,11 @@
 		A8BA2AE015EB7E19008389D6 /* findMaxRects */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = findMaxRects; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8BA2AE315EB7E1A008389D6 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		A8BA2AE515EB7E1A008389D6 /* findMaxRects.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = findMaxRects.1; sourceTree = "<group>"; };
+		A8BA2AF215EB9457008389D6 /* processGameassets */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = processGameassets; sourceTree = BUILT_PRODUCTS_DIR; };
+		A8BA2AF415EB9457008389D6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		A8BA2AF715EB9457008389D6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		A8BA2AFA15EB9457008389D6 /* processGameassets-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "processGameassets-Prefix.pch"; sourceTree = "<group>"; };
+		A8BA2AFB15EB9457008389D6 /* processGameassets.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = processGameassets.1; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +108,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A8BA2AEF15EB9457008389D6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A8BA2AF515EB9457008389D6 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -99,6 +126,7 @@
 				A8BA2A9215E8F184008389D6 /* ImageIO.framework */,
 				A8BA2A7215E8E388008389D6 /* GameAssetOrganizer */,
 				A8BA2AE215EB7E19008389D6 /* findMaxRects */,
+				A8BA2AF615EB9457008389D6 /* processGameassets */,
 				A8BA2A6B15E8E388008389D6 /* Frameworks */,
 				A8BA2A6915E8E388008389D6 /* Products */,
 			);
@@ -109,6 +137,7 @@
 			children = (
 				A8BA2A6815E8E388008389D6 /* GameAssetOrganizer.app */,
 				A8BA2AE015EB7E19008389D6 /* findMaxRects */,
+				A8BA2AF215EB9457008389D6 /* processGameassets */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -117,6 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				A8BA2A6C15E8E388008389D6 /* Cocoa.framework */,
+				A8BA2AF415EB9457008389D6 /* Foundation.framework */,
 				A8BA2A6E15E8E388008389D6 /* Other Frameworks */,
 			);
 			name = Frameworks;
@@ -184,6 +214,24 @@
 			path = findMaxRects;
 			sourceTree = "<group>";
 		};
+		A8BA2AF615EB9457008389D6 /* processGameassets */ = {
+			isa = PBXGroup;
+			children = (
+				A8BA2AF715EB9457008389D6 /* main.m */,
+				A8BA2AFB15EB9457008389D6 /* processGameassets.1 */,
+				A8BA2AF915EB9457008389D6 /* Supporting Files */,
+			);
+			path = processGameassets;
+			sourceTree = "<group>";
+		};
+		A8BA2AF915EB9457008389D6 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A8BA2AFA15EB9457008389D6 /* processGameassets-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -221,6 +269,23 @@
 			productReference = A8BA2AE015EB7E19008389D6 /* findMaxRects */;
 			productType = "com.apple.product-type.tool";
 		};
+		A8BA2AF115EB9457008389D6 /* processGameassets */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A8BA2AFD15EB9457008389D6 /* Build configuration list for PBXNativeTarget "processGameassets" */;
+			buildPhases = (
+				A8BA2AEE15EB9457008389D6 /* Sources */,
+				A8BA2AEF15EB9457008389D6 /* Frameworks */,
+				A8BA2AF015EB9457008389D6 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = processGameassets;
+			productName = processGameassets;
+			productReference = A8BA2AF215EB9457008389D6 /* processGameassets */;
+			productType = "com.apple.product-type.tool";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -245,6 +310,7 @@
 			targets = (
 				A8BA2A6715E8E388008389D6 /* GameAssetOrganizer */,
 				A8BA2ADF15EB7E19008389D6 /* findMaxRects */,
+				A8BA2AF115EB9457008389D6 /* processGameassets */,
 			);
 		};
 /* End PBXProject section */
@@ -283,6 +349,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				A8BA2AE415EB7E1A008389D6 /* main.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A8BA2AEE15EB9457008389D6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A8BA2AF815EB9457008389D6 /* main.m in Sources */,
+				A8BA2B0015EB9462008389D6 /* APContentModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -407,6 +482,30 @@
 			};
 			name = Release;
 		};
+		A8BA2AFE15EB9457008389D6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "processGameassets/processGameassets-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+					"CONSOLE=1",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		A8BA2AFF15EB9457008389D6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "processGameassets/processGameassets-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = "CONSOLE=1";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -426,6 +525,7 @@
 				A8BA2A8815E8E388008389D6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A8BA2AE715EB7E1A008389D6 /* Build configuration list for PBXNativeTarget "findMaxRects" */ = {
 			isa = XCConfigurationList;
@@ -434,6 +534,16 @@
 				A8BA2AE915EB7E1A008389D6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A8BA2AFD15EB9457008389D6 /* Build configuration list for PBXNativeTarget "processGameassets" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A8BA2AFE15EB9457008389D6 /* Debug */,
+				A8BA2AFF15EB9457008389D6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

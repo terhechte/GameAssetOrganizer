@@ -38,8 +38,10 @@
     return self;
 }
 - (void) openItem {
+#ifndef CONSOLE
     NSWorkspace *ws = [NSWorkspace sharedWorkspace];
     [ws selectFile: [self.folder path] inFileViewerRootedAtPath:nil];
+#endif
 }
 - (NSString*) path {
     return [self.folder path];
@@ -49,6 +51,13 @@
     [coder encodeInteger:self.assetPack forKey:@"assetPack"];
     [coder encodeObject:self.filename forKey:@"filename"];
     [coder encodeObject:self.folder forKey:@"folder"];
+}
+
+- (NSDictionary*) dictionary { // return a dictionary which is suitable for json serialization
+    return @{ @"pack" : @(self.pack),
+    @"assetPack": @(self.assetPack),
+    @"filename": self.filename,
+    @"folder": [self.folder path]}; //jsonserialization doesn't support url's
 }
 
 @end
@@ -99,11 +108,42 @@
 }
 
 - (NSData*) exportData {
-    NSDictionary *exportedDataDictionary = @{ @"header" : _structure,
-    @"data": self.gameAssetConfig};
+    NSDictionary *exportedDataDictionary = @{
+    @"header" : _structure,
+    @"data": self.gameAssetConfig,
+    @"folder": [[NSUserDefaults standardUserDefaults] objectForKey:@"CurrentPreferencesPath"]
+    };
     
     
     return [NSKeyedArchiver archivedDataWithRootObject:exportedDataDictionary];
+}
+
+- (NSDictionary*) exportDictionary {
+    // return the data structure that can be used
+    // from within a script. means we replace
+    // apcontent objects with apdictionraies.
+    NSMutableDictionary *returnPack = [NSMutableDictionary dictionaryWithCapacity:
+                                       [_structure count]];
+    
+    for(NSString *key in _structure) {
+        NSMutableDictionary *pack = [NSMutableDictionary dictionaryWithCapacity:10];
+        
+        NSInteger packIndex = [[self.gameAssetConfig allSortedKeys] indexOfObject:key];
+        
+        for (NSString *assetPack in [_structure objectForKey:key]) {
+            
+            NSInteger assetPackIndex = [[_structure objectForKey:key] indexOfObject:assetPack];
+            
+            // get the objects and transform them
+            NSArray *objectDictionaries = [[self assetsForPack:packIndex assetPack:assetPackIndex]
+                                           valueForKey:@"dictionary"];
+            
+            [pack setObject:objectDictionaries
+                     forKey:assetPack];
+        }
+        [returnPack setObject:pack forKey:key];
+    }
+    return returnPack;
 }
 
 - (void) loadImportedData:(NSData*) importedData {
@@ -111,6 +151,8 @@
     [NSKeyedUnarchiver unarchiveObjectWithData:importedData];
     _structure = [importedDictionary objectForKey:@"header"];
     self.gameAssetConfig = [importedDictionary objectForKey:@"data"];
+    [[NSUserDefaults standardUserDefaults] setObject:[importedDictionary objectForKey:@"folder"]
+                                              forKey:@"CurrentPreferencesPath"];
     
     
     self.currentAssetPack = -1;

@@ -13,6 +13,7 @@
 @property (nonatomic, strong) NSString *filename;
 @property (nonatomic, strong) NSURL *folder;
 + (APContentObject*) objectWithPack:(NSInteger)pack assetPack:(NSInteger)assetPack filename:(NSString*)filename folder:(NSURL*)folder;
+- (NSDictionary*) dictionary;
 @end
 
 @interface APContentModel : NSObject {
@@ -27,6 +28,7 @@
 
 - (void) loadImportedData:(NSData*) importedData;
 - (NSData*) exportData;
+- (NSDictionary*) exportDictionary;
     
 + (APContentModel*) sharedModel;
 - (NSInteger) numberOfPacks;
