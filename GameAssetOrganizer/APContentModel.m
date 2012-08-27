@@ -84,12 +84,22 @@
         self.gameAssetConfig = [NSMutableDictionary dictionaryWithCapacity:100];
         
         // this structure defines how many packs we have, how many sub packs they have
-        _structure = @{
-            @"LevelPack 1" : @[ @"Asset Pack 1", @"Asset Pack 2" , @"Seperate"],
-            @"LevelPack 2" : @[ @"Asset Pack 1", @"Asset Pack 2" , @"Seperate"],
-            @"LevelPack 3" : @[ @"Asset Pack 1", @"Asset Pack 2" , @"Seperate" ],
-            @"LevelPack 4" : @[ @"Asset Pack 1", @"Asset Pack 2" , @"Seperate" ]
-        };
+        // we load it from the structure.json file
+        NSData *fileData = [NSData dataWithContentsOfFile:
+                            [[NSBundle mainBundle] pathForResource:@"structure" ofType:@"json"]];
+        
+        NSAssert(fileData!=nil, @"structure.json seems empty");
+        
+        NSError *error = nil;
+        
+        _structure = [NSJSONSerialization JSONObjectWithData:fileData
+                                                     options:0
+                                                       error:&error];
+        
+        NSAssert(error==nil, [error localizedDescription]);
+        
+        NSAssert([_structure isKindOfClass:[NSDictionary class]],
+                 @"structure.json has to return a dictionary");
         
         // and now we create the pack structure from this structure
         for(NSString *key in _structure) {

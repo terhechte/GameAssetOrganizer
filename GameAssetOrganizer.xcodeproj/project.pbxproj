@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A809354515EBC9E4002D3418 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = A809354415EBC9E4002D3418 /* icon.icns */; };
+		A809354815EC071C002D3418 /* structure.json in Resources */ = {isa = PBXBuildFile; fileRef = A809354715EC071C002D3418 /* structure.json */; };
 		A8BA2A6D15E8E388008389D6 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8BA2A6C15E8E388008389D6 /* Cocoa.framework */; };
 		A8BA2A7715E8E388008389D6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A8BA2A7515E8E388008389D6 /* InfoPlist.strings */; };
 		A8BA2A7915E8E388008389D6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A8BA2A7815E8E388008389D6 /* main.m */; };
@@ -52,6 +53,7 @@
 
 /* Begin PBXFileReference section */
 		A809354415EBC9E4002D3418 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = SOURCE_ROOT; };
+		A809354715EC071C002D3418 /* structure.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = structure.json; sourceTree = SOURCE_ROOT; };
 		A8BA2A6815E8E388008389D6 /* GameAssetOrganizer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GameAssetOrganizer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8BA2A6C15E8E388008389D6 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		A8BA2A6F15E8E388008389D6 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -187,6 +189,7 @@
 				A8BA2A7815E8E388008389D6 /* main.m */,
 				A8BA2A7A15E8E388008389D6 /* GameAssetOrganizer-Prefix.pch */,
 				A8BA2A7B15E8E388008389D6 /* Credits.rtf */,
+				A809354715EC071C002D3418 /* structure.json */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -312,6 +315,7 @@
 				A8BA2A7D15E8E388008389D6 /* Credits.rtf in Resources */,
 				A8BA2A8315E8E388008389D6 /* MainMenu.xib in Resources */,
 				A809354515EBC9E4002D3418 /* icon.icns in Resources */,
+				A809354815EC071C002D3418 /* structure.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
