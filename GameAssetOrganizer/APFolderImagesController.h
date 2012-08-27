@@ -15,5 +15,6 @@
 @property (nonatomic, strong) NSArray *folders;
 @property (nonatomic, assign) NSInteger currentFolder;
 @property (nonatomic, strong) NSArray* currentFolderContent;
+@property (nonatomic, strong) NSPredicate *searchPredicate;
 
 @end

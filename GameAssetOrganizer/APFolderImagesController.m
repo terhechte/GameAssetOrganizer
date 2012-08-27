@@ -40,6 +40,7 @@
 @synthesize folders;
 @synthesize currentFolder = _currentFolder;
 @synthesize currentFolderContent;
+@synthesize searchPredicate = _searchPredicate;
 
 - (void) awakeFromNib {
     self.folders = @[     @"big",
@@ -51,6 +52,13 @@
     self.currentFolder = [[NSUserDefaults standardUserDefaults] integerForKey:@"CurrentFolder"];
     
     [self AP_updateFolderListing];
+}
+
+- (void) setSearchPredicate:(NSPredicate *)searchPredicate {
+    [self willChangeValueForKey:@"searchPredicate"];
+    self->_searchPredicate = searchPredicate;
+    [self AP_updateFolderListing];
+    [self didChangeValueForKey:@"searchPredicate"];
 }
 
 - (void) setCurrentFolder:(NSInteger)currentFolder {
@@ -73,28 +81,6 @@
     return [self.currentFolderContent objectAtIndex:index];
 }
 
-#pragma mark Drag and Drop
-//
-//- (NSArray*) namesOfPromisedFilesDroppedAtDestination:(NSURL*)dropLocation {
-//    CLCollectionView *collectionView = [self currentCollectionView];
-//    NSIndexSet *indexes = [self currentIndexes];
-//    
-//    dragStoreLocation = dropLocation;
-//    
-//    NSArray *names = [NSArray array];
-//    if ([collectionView.delegate respondsToSelector:@selector(clCollectionView:filenamesForItemsAtIndexes:)] ) {
-//        names = [collectionView.delegate clCollectionView:collectionView
-//                               filenamesForItemsAtIndexes:indexes];
-//    }
-//    
-//    // all the files need the png extension that we're using
-//    NSMutableArray *expandedNames = [NSMutableArray arrayWithCapacity:[names count]];
-//    for (NSString *filename in names) {
-//        [expandedNames addObject:[filename stringByAppendingFormat:@".%@", DRAG_DROP_DOWNLOAD_TYPE]];
-//    }
-//    
-//    return expandedNames;
-//}
 
 @end
 
@@ -130,6 +116,11 @@
             [mutableImages addObject: aFolderObject];
         }
     }];
+    
+    // if we have a search predicate, apply it
+    if (self.searchPredicate) {
+        [mutableImages filterUsingPredicate:self.searchPredicate];
+    }
     
     // and assign it
     self.currentFolderContent = mutableImages;
