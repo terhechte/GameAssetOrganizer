@@ -19,7 +19,24 @@
 		A8BA2A9315E8F184008389D6 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8BA2A9215E8F184008389D6 /* ImageIO.framework */; };
 		A8BA2A9515E8F1A6008389D6 /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8BA2A9415E8F1A6008389D6 /* Quartz.framework */; };
 		A8BA2A9815E90CDF008389D6 /* APContentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A8BA2A9715E90CDF008389D6 /* APContentModel.m */; };
+		A8BA2AB915EB7393008389D6 /* APCollectionViewItemSelectable.m in Sources */ = {isa = PBXBuildFile; fileRef = A8BA2AB815EB7393008389D6 /* APCollectionViewItemSelectable.m */; };
+		A8BA2ABC15EB73DB008389D6 /* APCollectionViewItemSelectableView.m in Sources */ = {isa = PBXBuildFile; fileRef = A8BA2ABB15EB73DB008389D6 /* APCollectionViewItemSelectableView.m */; };
+		A8BA2AE415EB7E1A008389D6 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8BA2AE315EB7E1A008389D6 /* main.cpp */; };
+		A8BA2AE615EB7E1A008389D6 /* findMaxRects.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = A8BA2AE515EB7E1A008389D6 /* findMaxRects.1 */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		A8BA2ADE15EB7E19008389D6 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+				A8BA2AE615EB7E1A008389D6 /* findMaxRects.1 in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		A8BA2A6815E8E388008389D6 /* GameAssetOrganizer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GameAssetOrganizer.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -45,6 +62,13 @@
 		A8BA2A9415E8F1A6008389D6 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
 		A8BA2A9615E90CDF008389D6 /* APContentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APContentModel.h; sourceTree = "<group>"; };
 		A8BA2A9715E90CDF008389D6 /* APContentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APContentModel.m; sourceTree = "<group>"; };
+		A8BA2AB715EB7393008389D6 /* APCollectionViewItemSelectable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = APCollectionViewItemSelectable.h; path = views/APCollectionViewItemSelectable.h; sourceTree = "<group>"; };
+		A8BA2AB815EB7393008389D6 /* APCollectionViewItemSelectable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = APCollectionViewItemSelectable.m; path = views/APCollectionViewItemSelectable.m; sourceTree = "<group>"; };
+		A8BA2ABA15EB73DB008389D6 /* APCollectionViewItemSelectableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = APCollectionViewItemSelectableView.h; path = views/APCollectionViewItemSelectableView.h; sourceTree = "<group>"; };
+		A8BA2ABB15EB73DB008389D6 /* APCollectionViewItemSelectableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = APCollectionViewItemSelectableView.m; path = views/APCollectionViewItemSelectableView.m; sourceTree = "<group>"; };
+		A8BA2AE015EB7E19008389D6 /* findMaxRects */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = findMaxRects; sourceTree = BUILT_PRODUCTS_DIR; };
+		A8BA2AE315EB7E1A008389D6 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		A8BA2AE515EB7E1A008389D6 /* findMaxRects.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = findMaxRects.1; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +82,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A8BA2ADD15EB7E19008389D6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -67,6 +98,7 @@
 				A8BA2A9415E8F1A6008389D6 /* Quartz.framework */,
 				A8BA2A9215E8F184008389D6 /* ImageIO.framework */,
 				A8BA2A7215E8E388008389D6 /* GameAssetOrganizer */,
+				A8BA2AE215EB7E19008389D6 /* findMaxRects */,
 				A8BA2A6B15E8E388008389D6 /* Frameworks */,
 				A8BA2A6915E8E388008389D6 /* Products */,
 			);
@@ -76,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				A8BA2A6815E8E388008389D6 /* GameAssetOrganizer.app */,
+				A8BA2AE015EB7E19008389D6 /* findMaxRects */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -102,6 +135,7 @@
 		A8BA2A7215E8E388008389D6 /* GameAssetOrganizer */ = {
 			isa = PBXGroup;
 			children = (
+				A8BA2AB615EB731C008389D6 /* Views */,
 				A8BA2A7E15E8E388008389D6 /* APAppDelegate.h */,
 				A8BA2A7F15E8E388008389D6 /* APAppDelegate.m */,
 				A8BA2A8115E8E388008389D6 /* MainMenu.xib */,
@@ -130,6 +164,26 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		A8BA2AB615EB731C008389D6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A8BA2AB715EB7393008389D6 /* APCollectionViewItemSelectable.h */,
+				A8BA2AB815EB7393008389D6 /* APCollectionViewItemSelectable.m */,
+				A8BA2ABA15EB73DB008389D6 /* APCollectionViewItemSelectableView.h */,
+				A8BA2ABB15EB73DB008389D6 /* APCollectionViewItemSelectableView.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		A8BA2AE215EB7E19008389D6 /* findMaxRects */ = {
+			isa = PBXGroup;
+			children = (
+				A8BA2AE315EB7E1A008389D6 /* main.cpp */,
+				A8BA2AE515EB7E1A008389D6 /* findMaxRects.1 */,
+			);
+			path = findMaxRects;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -149,6 +203,23 @@
 			productName = GameAssetOrganizer;
 			productReference = A8BA2A6815E8E388008389D6 /* GameAssetOrganizer.app */;
 			productType = "com.apple.product-type.application";
+		};
+		A8BA2ADF15EB7E19008389D6 /* findMaxRects */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A8BA2AE715EB7E1A008389D6 /* Build configuration list for PBXNativeTarget "findMaxRects" */;
+			buildPhases = (
+				A8BA2ADC15EB7E19008389D6 /* Sources */,
+				A8BA2ADD15EB7E19008389D6 /* Frameworks */,
+				A8BA2ADE15EB7E19008389D6 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = findMaxRects;
+			productName = findMaxRects;
+			productReference = A8BA2AE015EB7E19008389D6 /* findMaxRects */;
+			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
 
@@ -173,6 +244,7 @@
 			projectRoot = "";
 			targets = (
 				A8BA2A6715E8E388008389D6 /* GameAssetOrganizer */,
+				A8BA2ADF15EB7E19008389D6 /* findMaxRects */,
 			);
 		};
 /* End PBXProject section */
@@ -201,6 +273,16 @@
 				A8BA2A8E15E8F055008389D6 /* APPackImagesController.m in Sources */,
 				A8BA2A9115E8F067008389D6 /* APFolderImagesController.m in Sources */,
 				A8BA2A9815E90CDF008389D6 /* APContentModel.m in Sources */,
+				A8BA2AB915EB7393008389D6 /* APCollectionViewItemSelectable.m in Sources */,
+				A8BA2ABC15EB73DB008389D6 /* APCollectionViewItemSelectableView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A8BA2ADC15EB7E19008389D6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A8BA2AE415EB7E1A008389D6 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,6 +372,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GameAssetOrganizer/GameAssetOrganizer-Prefix.pch";
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "GameAssetOrganizer/GameAssetOrganizer-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -303,9 +386,24 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GameAssetOrganizer/GameAssetOrganizer-Prefix.pch";
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "GameAssetOrganizer/GameAssetOrganizer-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		A8BA2AE815EB7E1A008389D6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		A8BA2AE915EB7E1A008389D6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
@@ -326,6 +424,14 @@
 			buildConfigurations = (
 				A8BA2A8715E8E388008389D6 /* Debug */,
 				A8BA2A8815E8E388008389D6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		A8BA2AE715EB7E1A008389D6 /* Build configuration list for PBXNativeTarget "findMaxRects" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A8BA2AE815EB7E1A008389D6 /* Debug */,
+				A8BA2AE915EB7E1A008389D6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};

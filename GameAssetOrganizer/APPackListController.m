@@ -11,13 +11,14 @@
 @interface APPackListObject : NSObject
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, assign) NSInteger index;
+@property (nonatomic, assign) NSInteger parentIndex;
 @property (nonatomic, assign) bool leaf;
 + (APPackListObject*) packListObjectWithTitle:(NSString*)title index:(NSInteger)index leaf:(bool)leaf;
 @end
 
 @implementation APPackListObject
 
-@synthesize title = _title, index = _index, leaf = _leaf;
+@synthesize title = _title, index = _index, leaf = _leaf, parentIndex = _parentIndex;
 
 + (APPackListObject*) packListObjectWithTitle:(NSString*)title index:(NSInteger)index leaf:(bool)leaf {
     APPackListObject *object = [[APPackListObject alloc] init];
@@ -38,6 +39,8 @@
     model = [APContentModel sharedModel];
     objects = [NSMutableArray arrayWithCapacity:10];
 }
+
+#pragma mark OutlineViewDataSourcce
 
 - (NSInteger)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item {
     // we have an item, return the children
@@ -70,6 +73,7 @@
     APPackListObject *packObject = item;
     APPackListObject *po = [APPackListObject packListObjectWithTitle:[model titleOfAssetPack:index inPack:packObject.index]
                                                index:index leaf:YES];
+    po.parentIndex = [(APPackListObject*)item index];
     // we save the objects so they don't get released
     [objects addObject:po];
     return po;
@@ -86,6 +90,22 @@
 - (id)outlineView:(NSOutlineView *)outlineView objectValueForTableColumn:(NSTableColumn *)tableColumn byItem:(id)item {
     if (!item || ![item isKindOfClass:[APPackListObject class]]) return @"Root";
     return [(APPackListObject*)item title];
+}
+
+#pragma mark OutlineViewDelegate
+
+- (BOOL)outlineView:(NSOutlineView *)outlineView shouldSelectItem:(id)item {
+    // select the current pack / gamepack
+    APPackListObject *object = item;
+    if ([object leaf]) {
+        model.currentAssetPack = object.index;
+        model.currentPack = object.parentIndex;
+    } else {
+        model.currentPack = object.index;
+        model.currentAssetPack = -1; // unselected
+    }
+    
+    return YES;
 }
 
 @end

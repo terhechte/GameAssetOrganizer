@@ -12,6 +12,7 @@
 @property (nonatomic, assign) NSInteger pack, assetPack;
 @property (nonatomic, strong) NSString *filename;
 @property (nonatomic, strong) NSURL *folder;
++ (APContentObject*) objectWithPack:(NSInteger)pack assetPack:(NSInteger)assetPack filename:(NSString*)filename folder:(NSURL*)folder;
 @end
 
 @interface APContentModel : NSObject {
@@ -19,6 +20,14 @@
 }
 // really simple container for our config
 @property (nonatomic, strong) NSMutableDictionary *gameAssetConfig;
+
+// setting the current selected pack / asset
+@property (nonatomic, assign) NSInteger currentPack;
+@property (nonatomic, assign) NSInteger currentAssetPack;
+
+- (void) loadImportedData:(NSData*) importedData;
+- (NSData*) exportData;
+    
 + (APContentModel*) sharedModel;
 - (NSInteger) numberOfPacks;
 - (NSInteger) numberOfAssetPacksInPack:(NSInteger)pack;

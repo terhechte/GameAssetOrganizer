@@ -7,8 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "APContentModel.h"
 
 @interface APPackImagesController : NSObject
+@property (strong) APContentModel* model;
 @property (weak) IBOutlet NSCollectionView *collectionView;
+@property (strong) NSIndexSet *currentPackIndexes;
+@property (strong) NSArray *currentPackContent;
+@property (strong) NSString *currentFilesMaxRect;
+
+- (IBAction)removeAllItems:(id)sender;
 
 @end

@@ -12,5 +12,8 @@
 @interface APFolderImagesController : NSObject
 @property (weak) IBOutlet IKImageBrowserView *folderImageView;
 @property (weak) IBOutlet NSPopUpButton *currentFolderSelector;
+@property (nonatomic, strong) NSArray *folders;
+@property (nonatomic, assign) NSInteger currentFolder;
+@property (nonatomic, strong) NSArray* currentFolderContent;
 
 @end

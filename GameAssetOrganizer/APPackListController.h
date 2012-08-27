@@ -18,4 +18,5 @@
 @property (weak) IBOutlet NSOutlineView *outlineView;
 @property (weak) IBOutlet NSCollectionView *collectionView;
 
+
 @end

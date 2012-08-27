@@ -10,15 +10,51 @@
 
 @implementation APContentObject
 @synthesize pack, assetPack, filename, folder;
++ (APContentObject*) objectWithPack:(NSInteger)pack assetPack:(NSInteger)assetPack filename:(NSString*)filename folder:(NSURL*)folder {
+    APContentObject *op = [[APContentObject alloc] init];
+    op.pack = pack;
+    op.assetPack = assetPack;
+    op.filename = filename;
+    op.folder = folder;
+    return op;
+}
+- (id) initWithCoder: (NSCoder *)coder {
+    if (self = [super init]) {
+        self.pack = [coder decodeIntegerForKey:@"pack"];
+        self.assetPack = [coder decodeIntegerForKey:@"assetPack"];
+        self.filename = [coder decodeObjectForKey:@"filename"];
+        self.folder = [coder decodeObjectForKey:@"folder"];
+    }
+    return self;
+}
+- (void) openItem {
+    NSWorkspace *ws = [NSWorkspace sharedWorkspace];
+    [ws selectFile: [self.folder path] inFileViewerRootedAtPath:nil];
+}
+- (NSString*) path {
+    return [self.folder path];
+}
+- (void) encodeWithCoder: (NSCoder *)coder {
+    [coder encodeInteger:self.pack forKey:@"pack"];
+    [coder encodeInteger:self.assetPack forKey:@"assetPack"];
+    [coder encodeObject:self.filename forKey:@"filename"];
+    [coder encodeObject:self.folder forKey:@"folder"];
+}
+
 @end
 
 @implementation APContentModel
-@synthesize gameAssetConfig;
+@synthesize gameAssetConfig, currentAssetPack, currentPack;
+
 + (APContentModel*) sharedModel {
     static APContentModel* staticSharedModel;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         staticSharedModel = [[APContentModel alloc] init];
+        
+        // after starupt, nothing is selectrd
+        staticSharedModel.currentAssetPack = -1;
+        staticSharedModel.currentPack = -1;
     });
     return staticSharedModel;
 }
@@ -50,6 +86,23 @@
         }
     }
     return self;
+}
+
+- (NSData*) exportData {
+    NSDictionary *exportedDataDictionary = @{ @"header" : _structure,
+    @"data": self.gameAssetConfig};
+    
+    return [NSKeyedArchiver archivedDataWithRootObject:exportedDataDictionary];
+}
+
+- (void) loadImportedData:(NSData*) importedData {
+    NSDictionary *importedDictionary =
+    [NSKeyedUnarchiver unarchiveObjectWithData:importedData];
+    _structure = [importedDictionary objectForKey:@"header"];
+    self.gameAssetConfig = [importedDictionary objectForKey:@"data"];
+    
+    self.currentAssetPack = -1;
+    self.currentPack = -1;
 }
 
 - (NSString*) titleOfPack:(NSInteger)pack {
