@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A809354515EBC9E4002D3418 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = A809354415EBC9E4002D3418 /* icon.icns */; };
 		A8BA2A6D15E8E388008389D6 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8BA2A6C15E8E388008389D6 /* Cocoa.framework */; };
 		A8BA2A7715E8E388008389D6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A8BA2A7515E8E388008389D6 /* InfoPlist.strings */; };
 		A8BA2A7915E8E388008389D6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A8BA2A7815E8E388008389D6 /* main.m */; };
@@ -21,8 +22,6 @@
 		A8BA2A9815E90CDF008389D6 /* APContentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A8BA2A9715E90CDF008389D6 /* APContentModel.m */; };
 		A8BA2AB915EB7393008389D6 /* APCollectionViewItemSelectable.m in Sources */ = {isa = PBXBuildFile; fileRef = A8BA2AB815EB7393008389D6 /* APCollectionViewItemSelectable.m */; };
 		A8BA2ABC15EB73DB008389D6 /* APCollectionViewItemSelectableView.m in Sources */ = {isa = PBXBuildFile; fileRef = A8BA2ABB15EB73DB008389D6 /* APCollectionViewItemSelectableView.m */; };
-		A8BA2AE415EB7E1A008389D6 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8BA2AE315EB7E1A008389D6 /* main.cpp */; };
-		A8BA2AE615EB7E1A008389D6 /* findMaxRects.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = A8BA2AE515EB7E1A008389D6 /* findMaxRects.1 */; };
 		A8BA2AF515EB9457008389D6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8BA2AF415EB9457008389D6 /* Foundation.framework */; };
 		A8BA2AF815EB9457008389D6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A8BA2AF715EB9457008389D6 /* main.m */; };
 		A8BA2AFC15EB9457008389D6 /* processGameassets.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = A8BA2AFB15EB9457008389D6 /* processGameassets.1 */; };
@@ -36,7 +35,6 @@
 			dstPath = /usr/share/man/man1/;
 			dstSubfolderSpec = 0;
 			files = (
-				A8BA2AE615EB7E1A008389D6 /* findMaxRects.1 in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
@@ -53,6 +51,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		A809354415EBC9E4002D3418 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = SOURCE_ROOT; };
 		A8BA2A6815E8E388008389D6 /* GameAssetOrganizer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GameAssetOrganizer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8BA2A6C15E8E388008389D6 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		A8BA2A6F15E8E388008389D6 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -81,8 +80,6 @@
 		A8BA2ABA15EB73DB008389D6 /* APCollectionViewItemSelectableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = APCollectionViewItemSelectableView.h; path = views/APCollectionViewItemSelectableView.h; sourceTree = "<group>"; };
 		A8BA2ABB15EB73DB008389D6 /* APCollectionViewItemSelectableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = APCollectionViewItemSelectableView.m; path = views/APCollectionViewItemSelectableView.m; sourceTree = "<group>"; };
 		A8BA2AE015EB7E19008389D6 /* findMaxRects */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = findMaxRects; sourceTree = BUILT_PRODUCTS_DIR; };
-		A8BA2AE315EB7E1A008389D6 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		A8BA2AE515EB7E1A008389D6 /* findMaxRects.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = findMaxRects.1; sourceTree = "<group>"; };
 		A8BA2AF215EB9457008389D6 /* processGameassets */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = processGameassets; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8BA2AF415EB9457008389D6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A8BA2AF715EB9457008389D6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -125,7 +122,6 @@
 				A8BA2A9415E8F1A6008389D6 /* Quartz.framework */,
 				A8BA2A9215E8F184008389D6 /* ImageIO.framework */,
 				A8BA2A7215E8E388008389D6 /* GameAssetOrganizer */,
-				A8BA2AE215EB7E19008389D6 /* findMaxRects */,
 				A8BA2AF615EB9457008389D6 /* processGameassets */,
 				A8BA2A6B15E8E388008389D6 /* Frameworks */,
 				A8BA2A6915E8E388008389D6 /* Products */,
@@ -185,6 +181,7 @@
 		A8BA2A7315E8E388008389D6 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A809354415EBC9E4002D3418 /* icon.icns */,
 				A8BA2A7415E8E388008389D6 /* GameAssetOrganizer-Info.plist */,
 				A8BA2A7515E8E388008389D6 /* InfoPlist.strings */,
 				A8BA2A7815E8E388008389D6 /* main.m */,
@@ -203,15 +200,6 @@
 				A8BA2ABB15EB73DB008389D6 /* APCollectionViewItemSelectableView.m */,
 			);
 			name = Views;
-			sourceTree = "<group>";
-		};
-		A8BA2AE215EB7E19008389D6 /* findMaxRects */ = {
-			isa = PBXGroup;
-			children = (
-				A8BA2AE315EB7E1A008389D6 /* main.cpp */,
-				A8BA2AE515EB7E1A008389D6 /* findMaxRects.1 */,
-			);
-			path = findMaxRects;
 			sourceTree = "<group>";
 		};
 		A8BA2AF615EB9457008389D6 /* processGameassets */ = {
@@ -323,6 +311,7 @@
 				A8BA2A7715E8E388008389D6 /* InfoPlist.strings in Resources */,
 				A8BA2A7D15E8E388008389D6 /* Credits.rtf in Resources */,
 				A8BA2A8315E8E388008389D6 /* MainMenu.xib in Resources */,
+				A809354515EBC9E4002D3418 /* icon.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,7 +337,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A8BA2AE415EB7E1A008389D6 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
