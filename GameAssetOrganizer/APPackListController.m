@@ -38,6 +38,10 @@
 - (void) awakeFromNib {
     model = [APContentModel sharedModel];
     objects = [NSMutableArray arrayWithCapacity:10];
+    [outlineView reloadData];
+    
+    // expand all items
+    [outlineView expandItem:nil expandChildren:YES];
 }
 
 #pragma mark OutlineViewDataSourcce
@@ -107,5 +111,15 @@
     
     return YES;
 }
+
+- (BOOL)outlineView:(NSOutlineView *)outlineView shouldExpandItem:(id)item {
+    return YES;
+}
+
+- (BOOL)outlineView:(NSOutlineView *)outlineView shouldCollapseItem:(id)item {
+    return NO;
+}
+
+
 
 @end
