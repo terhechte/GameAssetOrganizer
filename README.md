@@ -14,7 +14,7 @@ The main use case of this tool is to have a visual indication of which items go 
 
 The tool looks like this:
 
-![Screenshot of GameAssetOrganizer](screenshot.jpg)
+![Screenshot of GameAssetOrganizer](GameAssetOrganizer/screenshot.jpg)
 
 About
 --------------
