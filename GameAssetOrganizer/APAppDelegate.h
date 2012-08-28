@@ -17,5 +17,6 @@
 
 - (IBAction)saveFile:(id)sender;
 - (IBAction)loadFile:(id)sender;
+- (IBAction)exportFile:(id)sender;
 - (IBAction)setPreferencesPath:(id)sender;
 @end

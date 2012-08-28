@@ -88,6 +88,48 @@
     }];
 }
 
+- (IBAction)exportFile:(id)sender {
+    NSSavePanel *panel = [NSSavePanel savePanel];
+    [panel setCanCreateDirectories:YES];
+    [panel setExtensionHidden:NO];
+    [panel setAllowedFileTypes:@[ @"json", ]];
+    
+    __weak APAppDelegate *weakAppDelegate = self;
+    
+    [panel beginWithCompletionHandler:^(NSInteger result) {
+        
+        // get a strong reference here
+        __strong APAppDelegate *strongAppDelegate = weakAppDelegate;
+        
+        if (result==NSFileHandlingPanelOKButton) {
+            // get the data
+            NSDictionary *exportedData = [strongAppDelegate.model exportDictionary];
+            
+            if (!exportedData) {
+                NSBeep();
+                return;
+            }
+            
+            // create the json representation
+            NSError *jsonConversionError = nil;
+            
+            NSData *jsonData =
+            [NSJSONSerialization dataWithJSONObject:exportedData
+                                            options:NSJSONWritingPrettyPrinted
+                                              error:&jsonConversionError];
+            
+            if (jsonConversionError) {
+                NSLog(@"Error: %@", jsonConversionError);
+                return;
+            }
+            
+            NSString *jsonString = [[NSString alloc] initWithData:jsonData
+                                                         encoding:NSUTF8StringEncoding];
+            [jsonString writeToURL:panel.URL atomically:YES encoding:NSUTF8StringEncoding error:nil];
+        }
+    }];
+}
+
 - (NSString*) currentPreferencesPath {
     return [[NSUserDefaults standardUserDefaults] objectForKey:@"CurrentPreferencesPath"];
 }
