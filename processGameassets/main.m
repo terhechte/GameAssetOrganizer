@@ -11,7 +11,7 @@
 
 void syntax();
 void syntax() {
-    printf("\nSyntax: processGameassets assetfile.assetdesc\n\n");
+    printf("\nSyntax: processGameassets assetfile.assetdesc path_to_processed_renders\n\n");
 }
 
 int main(int argc, const char * argv[])
@@ -19,7 +19,7 @@ int main(int argc, const char * argv[])
 
     @autoreleasepool {
         
-        if (argc==1) {
+        if (argc==2) {
             syntax();
             return -1;
         }
@@ -30,6 +30,12 @@ int main(int argc, const char * argv[])
             syntax();
             return -1;
         }
+		
+		NSString *processedRenderlocation =[NSString stringWithCString:argv[2] encoding:NSASCIIStringEncoding];
+		if (!processedRenderlocation) {
+			syntax();
+			return -1;
+		}
         
         // now load the file, and spit out the data as json :)
         NSData *fileData = [NSData dataWithContentsOfFile:inFile];
@@ -38,6 +44,10 @@ int main(int argc, const char * argv[])
             syntax();
             return -1;
         }
+		
+		// set the folder
+		APStoreLocation *location = [APStoreLocation sharedLocation];
+		[location setLocation:processedRenderlocation];
         
         // initialize the data
         APContentModel *model = [[APContentModel alloc] init];

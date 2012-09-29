@@ -8,12 +8,22 @@
 
 #import <Foundation/Foundation.h>
 
+@interface APStoreLocation : NSObject {
+	NSString *_location;
+}
++ (APStoreLocation*) sharedLocation;
++ (NSString*) location;
+- (NSString*) location;
+- (void) setLocation:(NSString*)location;
+@end
+
 @interface APContentObject : NSObject
 @property (nonatomic, assign) NSInteger pack, assetPack;
 @property (nonatomic, strong) NSString *filename;
 @property (nonatomic, strong) NSURL *folder;
 + (APContentObject*) objectWithPack:(NSInteger)pack assetPack:(NSInteger)assetPack filename:(NSString*)filename folder:(NSURL*)folder;
 - (NSDictionary*) dictionary;
+- (NSString*) relativeFolder;
 @end
 
 @interface APContentModel : NSObject {

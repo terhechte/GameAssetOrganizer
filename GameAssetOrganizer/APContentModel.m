@@ -8,6 +8,32 @@
 
 #import "APContentModel.h"
 
+@implementation APStoreLocation
++ (APStoreLocation*) sharedLocation {
+	static APStoreLocation* location;
+	static dispatch_once_t onceToken;
+	dispatch_once(&onceToken, ^{
+		location = [[APStoreLocation alloc] init];
+	});
+	return location;
+}
+// shorthand
++ (NSString*) location {
+	APStoreLocation *location = [APStoreLocation sharedLocation];
+	return [location location];
+}
+- (NSString*) location {
+	// if it is not set, use the default
+	if (!self->_location) {
+		return [[NSUserDefaults standardUserDefaults] objectForKey:@"CurrentPreferencesPath"];
+	}
+	return self->_location;
+}
+- (void) setLocation:(NSString *)location {
+	self->_location = location;
+}
+@end
+
 @interface NSDictionary(Sort)
 - (NSArray*) allSortedKeys;
 @end
@@ -33,7 +59,7 @@
         self.pack = [coder decodeIntegerForKey:@"pack"];
         self.assetPack = [coder decodeIntegerForKey:@"assetPack"];
         self.filename = [coder decodeObjectForKey:@"filename"];
-        self.folder = [coder decodeObjectForKey:@"folder"];
+		self.folder = [NSURL URLWithString:[coder decodeObjectForKey:@"folder"]];
     }
     return self;
 }
@@ -46,18 +72,47 @@
 - (NSString*) path {
     return [self.folder path];
 }
+- (NSString*) folder {
+	//add relative information
+	// add our home directory, and create an nsurl again
+	NSString *savedCompleteFolder = [[APStoreLocation location]
+									 stringByAppendingString:[self->folder path]];
+	
+	return [NSURL URLWithString:savedCompleteFolder];
+}
+- (void) setFolder:(NSURL *)f {
+	// remove the current preferences, and save then
+	NSString *path = [f absoluteString];
+	
+	NSString *currentPath = [APStoreLocation location];
+	
+	[self willChangeValueForKey:@"folder"];
+	self->folder = [NSURL URLWithString:[path stringByReplacingOccurrencesOfString:currentPath withString:@""]];
+	[self didChangeValueForKey:@"folder"];
+							 
+}
 - (void) encodeWithCoder: (NSCoder *)coder {
     [coder encodeInteger:self.pack forKey:@"pack"];
     [coder encodeInteger:self.assetPack forKey:@"assetPack"];
     [coder encodeObject:self.filename forKey:@"filename"];
-    [coder encodeObject:self.folder forKey:@"folder"];
+	// for the folder, we have to make sure that we strip
+	// the current user home direcctory away
+	// otherwise, loading this file on a different system, will make it not load properly
+    [coder encodeObject:[self relativeFolder] forKey:@"folder"];
+}
+
+- (NSString*) relativeFolder {
+	NSString *homeDirectory = [APStoreLocation location];
+	NSString *folderString = [self.folder absoluteString];
+	NSString *strippedFolder = [folderString stringByReplacingOccurrencesOfString:homeDirectory withString:@""];
+	return strippedFolder;
 }
 
 - (NSDictionary*) dictionary { // return a dictionary which is suitable for json serialization
     return @{ @"pack" : @(self.pack),
     @"assetPack": @(self.assetPack),
     @"filename": self.filename,
-    @"folder": [self.folder path]}; //jsonserialization doesn't support url's
+    @"folder": [self relativeFolder]}; //jsonserialization doesn't support url's
 }
 
 @end
@@ -121,7 +176,7 @@
     NSDictionary *exportedDataDictionary = @{
     @"header" : _structure,
     @"data": self.gameAssetConfig,
-    @"folder": [[NSUserDefaults standardUserDefaults] objectForKey:@"CurrentPreferencesPath"]
+    @"folder": [APStoreLocation location]
     };
     
     
@@ -161,8 +216,10 @@
     [NSKeyedUnarchiver unarchiveObjectWithData:importedData];
     _structure = [importedDictionary objectForKey:@"header"];
     self.gameAssetConfig = [importedDictionary objectForKey:@"data"];
-    [[NSUserDefaults standardUserDefaults] setObject:[importedDictionary objectForKey:@"folder"]
-                                              forKey:@"CurrentPreferencesPath"];
+	
+	// this makes things not work correct on other machines.
+//    [[NSUserDefaults standardUserDefaults] setObject:[importedDictionary objectForKey:@"folder"]
+//                                              forKey:@"CurrentPreferencesPath"];
     
     
     self.currentAssetPack = -1;

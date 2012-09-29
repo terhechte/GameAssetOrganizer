@@ -46,6 +46,7 @@
     self.folders = @[     @"big",
     @"frigginHuge",
     @"medium",
+    @"special",
     @"small"
     ];
     
@@ -90,7 +91,7 @@
     NSString *folder = self.folders[self.currentFolder];
     
     // and find all images in the path for this
-    NSString *currentPath = [[NSUserDefaults standardUserDefaults] objectForKey:@"CurrentPreferencesPath"];
+    NSString *currentPath = [APStoreLocation location];
     
     if (!currentPath) {
         // error message
